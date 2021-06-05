@@ -79,14 +79,16 @@ Drawing.new = function(Type, UI)
                     LineProperties.From = From
                 end
                 if (Property == "Visible") then
-                    LineFrame.Visible = true
-                    LineProperties.Visible = true
+                    LineFrame.Visible = Value
+                    LineProperties.Visible = Value
                 end
                 if (Property == "Thickness") then
+                    Value = Value < 1 and 1 or Value
+
                     local Direction = (LineProperties.To - LineProperties.From);
                     local Distance = Direction.Magnitude
 
-                    LineFrame.Size = UDim2.fromOffset(Distance, LineProperties.Thickness);
+                    LineFrame.Size = UDim2.fromOffset(Distance, Value);
 
                     LineProperties.Thickness = Value
                 end
@@ -105,6 +107,7 @@ Drawing.new = function(Type, UI)
                         LineFrame:Destroy();
                     end)
                 end
+                return LineProperties[Property]
             end)
         })
     end
