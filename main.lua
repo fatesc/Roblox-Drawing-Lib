@@ -193,7 +193,7 @@ Drawing.new = function(Type, UI)
         TextLabel.TextColor3 = TextProperties.Color
         TextLabel.Visible = TextProperties.Visible
         TextLabel.BackgroundTransparency = 1
-        TextLabel.TextTransparency = TextProperties.Transparency
+        TextLabel.TextTransparency = 1 - TextProperties.Transparency
         
         TextLabel.Parent = UI
 
@@ -216,7 +216,7 @@ Drawing.new = function(Type, UI)
                     TextProperties.Color = Value
                 end
                 if (Property == "Transparency") then
-                    TextLabel.TextTransparency = Value
+                    TextLabel.TextTransparency = 1 - Value
                     TextProperties.Transparency = Value
                 end
                 if (Property == "Visible") then
@@ -238,6 +238,12 @@ Drawing.new = function(Type, UI)
                 return TextProperties[Property]
             end)
         })
+    end
+
+    if (Type == "Quad") then -- will add later
+        return setmetatable({}, {
+            
+        });  
     end
 end
 
