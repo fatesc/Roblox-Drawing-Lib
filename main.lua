@@ -102,6 +102,7 @@ Drawing.new = function(Type, UI)
                 end
                 if (Property == "Position") then
                     LineFrame.Position = Value
+                end
             end),
             __index = newcclosure(function(Instance_, Property)
                 if (Property == "Remove") then
