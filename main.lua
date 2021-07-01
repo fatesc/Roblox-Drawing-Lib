@@ -3,6 +3,7 @@ newcclosure = newcclosure or function(f)
     return f
 end
 
+
 local Workspace = game:GetService("Workspace");
 local Camera = Workspace:FindFirstChild("Camera");
 local CoreGui = game:GetService("CoreGui");
@@ -169,7 +170,7 @@ Drawing.new = function(Type, UI)
                         CircleFrame:Destroy();
                     end)
                 end
-                
+
                 return CircleProperties[Property]
             end)
         })
@@ -197,7 +198,7 @@ Drawing.new = function(Type, UI)
         TextLabel.Visible = TextProperties.Visible
         TextLabel.BackgroundTransparency = 1
         TextLabel.TextTransparency = 1 - TextProperties.Transparency
-        
+
         TextLabel.Parent = UI
 
         return setmetatable({}, {
@@ -237,17 +238,75 @@ Drawing.new = function(Type, UI)
                         TextLabel:Destroy();
                     end)
                 end
-                
+
                 return TextProperties[Property]
+            end)
+        })
+    end
+
+    if (Type == "Square") then
+        local SquareProperties = ({
+        Length                 = 150,
+            Filled = true,
+            Position = Vector2.new()
+        } + BaseDrawingProperties)
+
+        local SquareFrame = Instance.new("Frame");
+
+        SquareFrame.AnchorPoint = Vector2.new(0.5, 0.5);
+        SquareFrame.BorderSizePixel = 0
+
+        SquareFrame.BackgroundColor3 = SquareProperties.Color
+        SquareFrame.Visible = SquareProperties.Visible
+        SquareFrame.BackgroundTransparency = SquareProperties.Transparency
+
+        SquareFrame.Parent = UI
+
+        return setmetatable({}, {
+            __newindex = newcclosure(function(Instance_, Property, Value)
+            if (Property == "Length") then
+                    SquareFrame.Size = UDim2.new(0, Value, 0, Value);
+                    SquareProperties.Lenght = Value
+                end
+                if (Property == "Position") then
+                    SquareFrame.Position = UDim2.new(0, Value.X, 0, Value.Y);
+                    SquareProperties.Position = Value
+                end
+                if (Property == "Filled") then
+                    SquareFrame.BackgroundTransparency = Value == true and 0 or 0.8
+                    SquareProperties.Filled = Value
+                end
+                if (Property == "Color") then
+                    SquareFrame.BackgroundColor3 = Value
+                    SquareProperties.Color = Value
+                end
+                if (Property == "Visible") then
+                    SquareFrame.Visible = Value
+                    SquareProperties.Visible = Value
+                end
+                if (Property == "Transparency") then
+
+                end
+                if (Property == "Color") then
+                    SquareFrame.BackgroundColor3 = Value
+                    SquareProperties.Color = Value
+                end
+            end),
+            __index = newcclosure(function(Instance_, Property)
+                if (Property == "Remove") then
+                    return newcclosure(function()
+                        SquareFrame:Destroy();
+                    end)
+                end
+
+                return SquareProperties[Property]
             end)
         })
     end
 
     if (Type == "Quad") then -- will add later
         return setmetatable({}, {
-            
+
         });  
     end
 end
-
-getgenv().Drawing = Drawing
