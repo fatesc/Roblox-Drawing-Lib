@@ -100,6 +100,8 @@ Drawing.new = function(Type, UI)
                     LineFrame.BackgroundColor3 = Value
                     LineProperties.Color = Value 
                 end
+                if (Property == "Position") then
+                    LineFrame.Position = Value
             end),
             __index = newcclosure(function(Instance_, Property)
                 if (Property == "Remove") then
