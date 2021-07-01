@@ -246,7 +246,7 @@ Drawing.new = function(Type, UI)
 
     if (Type == "Square") then
         local SquareProperties = ({
-        Length                 = 150,
+            Size = 150,
             Filled = true,
             Position = Vector2.new()
         } + BaseDrawingProperties)
@@ -264,9 +264,9 @@ Drawing.new = function(Type, UI)
 
         return setmetatable({}, {
             __newindex = newcclosure(function(Instance_, Property, Value)
-            if (Property == "Length") then
+            if (Property == "Size") then
                     SquareFrame.Size = UDim2.new(0, Value, 0, Value);
-                    SquareProperties.Lenght = Value
+                    SquareProperties.Size = Value
                 end
                 if (Property == "Position") then
                     SquareFrame.Position = UDim2.new(0, Value.X, 0, Value.Y);
