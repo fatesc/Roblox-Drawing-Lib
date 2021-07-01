@@ -247,4 +247,4 @@ Drawing.new = function(Type, UI)
     end
 end
 
-return Drawing
+getgenv().Drawing = Drawing
