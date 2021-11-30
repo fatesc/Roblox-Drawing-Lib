@@ -271,7 +271,7 @@ Drawing.new = function(Type, UI)
                     SquareProperties.Size = Value
                 end
                 if (Property == "Color") then
-                    SquareFrame.TextColor3 = Value
+                    SquareFrame.BackgroundColor3 = Value
                     SquareProperties.Color = Value
                 end
                 if (Property == "Transparency") then
